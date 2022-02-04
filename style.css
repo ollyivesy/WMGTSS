@@ -26,6 +26,7 @@ body {
   #header button {
     background-color:#92a1d1;
   }
+  /* Define the maximum width of pixels the container on the webpage will have. Nothing can go outside of this width.*/
   #container {
     width: 770px;
   }
