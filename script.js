@@ -8,6 +8,11 @@ const calendar = document.getElementById('calendar');
 function load() {
     const dt = new Date();
 
+    /* logic to determine what month is displayed if Next or Back button is clicked*/
+    if (nav !== 0) {
+        dt.setMonth(new Date().getMonth() + nav);
+    }    
+
     const day = dt.getDate();
     const month = dt.getMonth();
     const year = dt.getFullYear();
@@ -30,6 +35,11 @@ function load() {
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
     /* Render the Month name and the Year in the header */
     document.getElementById('monthDisplay').innerText = `${dt.toLocaleDateString('en-gb', { month: 'long'})} ${year}`;
+
+    /* Make the Calendar only render the current Months Days.
+    Without this, the calendar would infinitely render all days of every month as a list whenever the month is changed.*/
+    calendar.innerHTML = '';
+
     /* Render the day squares for the month */
     for(let i = 1; i<= paddingDays + daysInMonth; i++) {
 
@@ -56,6 +66,19 @@ function load() {
     }
 
     console.log(paddingDays);
+
 }
 
+function initButtons() {
+    document.getElementById('nextButton').addEventListener('click', () => {
+        nav++;
+        load();
+    });
+    document.getElementById('backButton').addEventListener('click', () => {
+        nav--;
+        load();
+    });
+
+}
+initButtons();
 load();
