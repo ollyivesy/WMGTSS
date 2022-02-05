@@ -35,10 +35,13 @@ function load() {
         daySquare.classList.add('day');
 
         /* Define if there should be a padding day or an actual day */
+
         /* Render a day square if the day is not a padding day*/
         if (i > paddingDays) {
+            /* Render the number of the day inside the day square*/
             daySquare.innerText = i - paddingDays;
 
+            /* Define function using a click listener whenever the user clicks a day square*/
             daySquare.addEventListener('click', () => console.log('click'));
 
         /* If there is a padding day, render an empty square*/    
@@ -46,6 +49,7 @@ function load() {
             daySquare.classList.add('padding');
 
         }
+        /* Render the day squares inside the Calendar container*/
         calendar.appendChild(daySquare);
     }
 
