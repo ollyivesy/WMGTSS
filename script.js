@@ -26,8 +26,8 @@ function load() {
         day: 'numeric',
 
     });
-    const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
+    const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
     /* Render the day squares for the month */
     for(let i = 1; i<= paddingDays + daysInMonth; i++) {
 
