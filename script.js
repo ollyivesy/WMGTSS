@@ -28,6 +28,8 @@ function load() {
     });
 
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
+    /* Render the Month name and the Year in the header */
+    document.getElementById('monthDisplay').innerText = `${dt.toLocaleDateString('en-gb', { month: 'long'})} ${year}`;
     /* Render the day squares for the month */
     for(let i = 1; i<= paddingDays + daysInMonth; i++) {
 
