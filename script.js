@@ -29,7 +29,6 @@ function load() {
         year: 'numeric',
         month: 'numeric',
         day: 'numeric',
-
     });
 
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
