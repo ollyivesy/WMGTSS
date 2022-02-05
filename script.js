@@ -28,9 +28,25 @@ function load() {
     });
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
+    /* Render the day squares for the month */
     for(let i = 1; i<= paddingDays + daysInMonth; i++) {
 
         const daySquare = document.createElement('div');
+        daySquare.classList.add('day');
+
+        /* Define if there should be a padding day or an actual day */
+        /* Render a day square if the day is not a padding day*/
+        if (i > paddingDays) {
+            daySquare.innerText = i - paddingDays;
+
+            daySquare.addEventListener('click', () => console.log('click'));
+
+        /* If there is a padding day, render an empty square*/    
+        } else {
+            daySquare.classList.add('padding');
+
+        }
+        calendar.appendChild(daySquare);
     }
 
     console.log(paddingDays);
