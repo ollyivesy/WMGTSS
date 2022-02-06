@@ -79,7 +79,7 @@ body {
     background-color: #FFFCFF !important;
     box-shadow: none !important;
   }
-  #newEventModal, #deleteEventModal {
+  #newEventWindow, #deleteEventWindow {
     display: none;
     z-index: 20;
     padding: 25px;
@@ -114,7 +114,7 @@ body {
   #eventText {
     font-size: 14px;
   }
-  #modalBackDrop {
+  #eventWindowBackdrop {
     display: none;
     top: 0px;
     left: 0px;
