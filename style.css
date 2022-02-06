@@ -131,6 +131,9 @@ body {
   #eventText {
     font-size: 14px;
   }
+  #eventDescriptionText {
+    font-size: 14px;
+  }
   #eventWindowBackdrop {
     display: none;
     top: 0px;
