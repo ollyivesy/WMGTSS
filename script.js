@@ -17,7 +17,7 @@ function openEventWindow(date) {
 
     if (eventForDay) {
         document.getElementById('eventText').innerText = eventForDay.title;
-        document.getElementById('eventText').innerText = eventForDay.description;
+        document.getElementById('eventDescriptionText').innerText = eventForDay.description;
         deleteEventWindow.style.display = 'block';
     } else {
         newEventWindow.style.display = 'block';
