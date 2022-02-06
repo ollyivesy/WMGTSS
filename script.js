@@ -4,6 +4,23 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
 
 const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const calendar = document.getElementById('calendar');
+const newEventWindow = document.getElementById('newEventWindow');
+const backDrop = document.getElementById('eventWindowBackdrop');
+
+function openEventWindow(date) {
+    clicked = date;
+
+    const eventForDay = events.find(e => e.date === clicked);
+
+    if (eventForDay) {
+        console.log('Event already exists');
+
+    } else {
+        newEventWindow.style.display = 'block';
+
+    }
+    backDrop.style.display = 'block';
+}
 
 function load() {
     const dt = new Date();
@@ -53,7 +70,7 @@ function load() {
             daySquare.innerText = i - paddingDays;
 
             /* Define function using a click listener whenever the user clicks a day square*/
-            daySquare.addEventListener('click', () => console.log('click'));
+            daySquare.addEventListener('click', () => openEventWindow(`${month + 1}/${i - paddingDays}/${year}`));
 
         /* If there is a padding day, render an empty square*/    
         } else {
