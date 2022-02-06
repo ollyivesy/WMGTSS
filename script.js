@@ -88,6 +88,7 @@ function load() {
 }
 
 function closeEventWindow(){
+    eventTitleInput.classList.remove('error');
     newEventWindow.style.display = 'none';
     eventWindowBackdrop.style.display = 'none';
     eventTitleInput.value = '';
@@ -95,21 +96,40 @@ function closeEventWindow(){
     clicked = null;
     load();
 }
+function saveEvent(){
+    if (eventTitleInput.value){
+        eventTitleInput.classList.remove('error');
 
+        events.push({
+            date:clicked,
+            title: eventTitleInput.value,
+            description: eventDescriptionInput.value,
+        });
+
+        localStorage.setItem('events', JSON.stringify(events));
+        closeEventWindow();
+
+    } else {
+        eventTitleInput.classList.add('error');
+    }
+
+}
 
 function initButtons() {
     document.getElementById('nextButton').addEventListener('click', () => {
         nav++;
         load();
     });
+
     document.getElementById('backButton').addEventListener('click', () => {
         nav--;
         load();
     });
 
-    document.getElementById('saveButton', () => {});
-    document.getElementById('cancelButton', closeEventWindow);
+    document.getElementById('saveButton').addEventListener('click', saveEvent);
+    document.getElementById('cancelButton').addEventListener('click', closeEventWindow);
 
 }
+
 initButtons();
 load();
