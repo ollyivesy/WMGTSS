@@ -5,6 +5,7 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
 const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const calendar = document.getElementById('calendar');
 const newEventWindow = document.getElementById('newEventWindow');
+const deleteEventWindow = document.getElementById('deleteEventWindow');
 const backDrop = document.getElementById('eventWindowBackdrop');
 const eventTitleInput = document.getElementById('eventTitleInput')
 const eventDescriptionInput = document.getElementById('eventDescriptionInput')
@@ -15,8 +16,9 @@ function openEventWindow(date) {
     const eventForDay = events.find(e => e.date === clicked);
 
     if (eventForDay) {
-        console.log('Event already exists');
-
+        document.getElementById('eventText').innerText = eventForDay.title;
+        document.getElementById('eventText').innerText = eventForDay.description;
+        deleteEventWindow.style.display = 'block';
     } else {
         newEventWindow.style.display = 'block';
 
@@ -64,6 +66,8 @@ function load() {
         const daySquare = document.createElement('div');
         daySquare.classList.add('day');
 
+        const dayString = `${month + 1}/${i - paddingDays}/${year}`;
+
         /* Define if there should be a padding day or an actual day */
 
         /* Render a day square if the day is not a padding day*/
@@ -71,8 +75,22 @@ function load() {
             /* Render the number of the day inside the day square*/
             daySquare.innerText = i - paddingDays;
 
+            const eventForDay = events.find(e => e.date === dayString);
+
+            if(i - paddingDays === day && nav === 0){
+                daySquare.id = 'currentDay';
+
+            }
+
+            if (eventForDay){
+                const eventDiv = document.createElement('div');
+                eventDiv.classList.add('event');
+                eventDiv.innerText = eventForDay.title;
+                daySquare.appendChild(eventDiv);
+            }
+
             /* Define function using a click listener whenever the user clicks a day square*/
-            daySquare.addEventListener('click', () => openEventWindow(`${month + 1}/${i - paddingDays}/${year}`));
+            daySquare.addEventListener('click', () => openEventWindow(dayString));
 
         /* If there is a padding day, render an empty square*/    
         } else {
@@ -90,6 +108,7 @@ function load() {
 function closeEventWindow(){
     eventTitleInput.classList.remove('error');
     newEventWindow.style.display = 'none';
+    deleteEventWindow.style.display = 'none';
     eventWindowBackdrop.style.display = 'none';
     eventTitleInput.value = '';
     eventDescriptionInput.value = '';
@@ -115,6 +134,13 @@ function saveEvent(){
 
 }
 
+function deleteEvent(){
+    events = events.filter(e => e.date !== clicked);
+    localStorage.setItem('events', JSON.stringify(events));
+    closeEventWindow();
+}
+
+
 function initButtons() {
     document.getElementById('nextButton').addEventListener('click', () => {
         nav++;
@@ -128,6 +154,9 @@ function initButtons() {
 
     document.getElementById('saveButton').addEventListener('click', saveEvent);
     document.getElementById('cancelButton').addEventListener('click', closeEventWindow);
+
+    document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+    document.getElementById('closeButton').addEventListener('click', closeEventWindow);
 
 }
 
