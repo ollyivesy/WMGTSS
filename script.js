@@ -6,6 +6,8 @@ const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satur
 const calendar = document.getElementById('calendar');
 const newEventWindow = document.getElementById('newEventWindow');
 const backDrop = document.getElementById('eventWindowBackdrop');
+const eventTitleInput = document.getElementById('eventTitleInput')
+const eventDescriptionInput = document.getElementById('eventDescriptionInput')
 
 function openEventWindow(date) {
     clicked = date;
@@ -85,6 +87,16 @@ function load() {
 
 }
 
+function closeEventWindow(){
+    newEventWindow.style.display = 'none';
+    eventWindowBackdrop.style.display = 'none';
+    eventTitleInput.value = '';
+    eventDescriptionInput.value = '';
+    clicked = null;
+    load();
+}
+
+
 function initButtons() {
     document.getElementById('nextButton').addEventListener('click', () => {
         nav++;
@@ -94,6 +106,9 @@ function initButtons() {
         nav--;
         load();
     });
+
+    document.getElementById('saveButton', () => {});
+    document.getElementById('cancelButton', closeEventWindow);
 
 }
 initButtons();
