@@ -32,8 +32,12 @@ app.use(passport.session())
 //state to use the necassary files for the index.ejs are in the "public" folder
 app.use(express.static(__dirname + '/public'))
 
-app.get('/', (req, res) => {
+app.get('/tutorview', (req, res) => {
     res.render('index.ejs')
+})
+
+app.get('/studentview', (req, res) => {
+    res.render('student_page.ejs')
 })
 
 app.get('/login', (req, res) => {
