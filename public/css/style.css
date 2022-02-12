@@ -2,7 +2,7 @@ body {
     display: flex;
     margin-top: 50px;
     justify-content: center;
-    background-color: #FFFCFF;
+    background-color: #c5e1a5;
   }
   button { 
     width: 75px;
@@ -17,7 +17,7 @@ body {
   
   #header {
     padding: 10px;
-    color: #d36c6c;
+    color: #ffffff;
     font-size: 26px;
     font-family: sans-serif;
     display: flex;
@@ -81,7 +81,7 @@ body {
   }
   .padding {
     cursor: default !important;
-    background-color: #FFFCFF !important;
+    background-color: #c5e1a5 !important;
     box-shadow: none !important;
   }
   #newEventWindow, #deleteEventWindow {
