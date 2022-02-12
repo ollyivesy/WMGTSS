@@ -119,6 +119,9 @@ body {
     padding-bottom: 200px;
     white-space: normal;
   }
+  #eventTimeInput {
+    box-shadow: 0px 0px 3px gray;
+  }
   #eventTitleInput.error {
     border: 2px solid red;
   }
@@ -132,6 +135,9 @@ body {
     font-size: 14px;
   }
   #eventDescriptionText {
+    font-size: 14px;
+  }
+  #eventTimeText {
     font-size: 14px;
   }
   #eventWindowBackdrop {

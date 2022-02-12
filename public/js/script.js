@@ -9,6 +9,7 @@ const deleteEventWindow = document.getElementById('deleteEventWindow');
 const backDrop = document.getElementById('eventWindowBackdrop');
 const eventTitleInput = document.getElementById('eventTitleInput')
 const eventDescriptionInput = document.getElementById('eventDescriptionInput')
+const evenTimeInput = document.getElementById('eventTimeInput')
 
 function openEventWindow(date) {
     clicked = date;
@@ -18,6 +19,7 @@ function openEventWindow(date) {
     if (eventForDay) {
         document.getElementById('eventText').innerText = eventForDay.title;
         document.getElementById('eventDescriptionText').innerText = eventForDay.description;
+        document.getElementById('eventTimeText').innerText = eventForDay.time;
         deleteEventWindow.style.display = 'block';
     } else {
         newEventWindow.style.display = 'block';
@@ -112,6 +114,7 @@ function closeEventWindow(){
     eventWindowBackdrop.style.display = 'none';
     eventTitleInput.value = '';
     eventDescriptionInput.value = '';
+    eventTitleInput.value = '';
     clicked = null;
     load();
 }
@@ -123,6 +126,7 @@ function saveEvent(){
             date:clicked,
             title: eventTitleInput.value,
             description: eventDescriptionInput.value,
+            time: evenTimeInput.value,
         });
 
         localStorage.setItem('events', JSON.stringify(events));

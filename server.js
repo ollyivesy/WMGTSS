@@ -40,13 +40,13 @@ app.get('/studentview', (req, res) => {
     res.render('student_page.ejs')
 })
 
-app.get('/login', (req, res) => {
+app.get('/', (req, res) => {
     res.render('login.ejs')
 })
 
-app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
+app.post('/', passport.authenticate('local', {
+    successRedirect: '/studentview',
+    failureRedirect: '/',
     failureFlash: true
 }))
 
