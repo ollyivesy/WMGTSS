@@ -5,24 +5,27 @@
   <title>Login Page</title>
 <link rel="stylesheet" href="css/login_style.css">
 
+
 </head>
 <body>
-<div id="login-form-wrap">
-  <h2>Login</h2>
-  <form id="login-form">
-    <p>
-    <input type="text" id="username" name="username" placeholder="Username" required></i>
-    </p>
-    <p>
-    <input type="password" id="password" name="password" placeholder="Password" required></i>
-    </p>
-    <p>
-    <input type="submit" id="login" value="Login">
-    </p>
-  </form>
-  <div id="footer-wrap">
-      <p>WMGSS - Calendar Board</p>
+  <div id="login-form-wrap">
+    <h2>Login</h2>
+    <form id="login-form">
+      <p>
+      <input type="text" id="username" name="username" placeholder="Username" required></i>
+      </p>
+      <p>
+      <input type="password" id="password" name="password" placeholder="Password" required></i>
+      </p>
+      <p>
+      <input type="submit" value="Login" onclick=validate()>
+      </p>
+   </form>
+    <div id="footer-wrap">
+        <p>WMGSS - Calendar Board</p>
+    </div>
   </div>
-</div>
+
+  <script src="js/loginScript.js"></script>
 </body>
 </html>
