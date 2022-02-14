@@ -27,11 +27,11 @@ function openEventWindow(date) {
     }
     backDrop.style.display = 'block';
 }
-
+//this will be the main function that render the calendar board correctly
 function load() {
     const dt = new Date();
 
-    /* logic to determine what month is displayed if Next or Back button is clicked*/
+    // logic to determine what month is displayed if Next or Back button is clicked*/
     if (nav !== 0) {
         dt.setMonth(new Date().getMonth() + nav);
     }    
@@ -40,10 +40,10 @@ function load() {
     const month = dt.getMonth();
     const year = dt.getFullYear();
 
-    /* Calculate how many days there are in a month*/
+    // Calculate how many days there are in a month*/
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    /* Get the first day of the month*/
+    // Get the first day of the month*/
     const firstDayOfMonth = new Date(year, month, 1);
 
     const dateString = firstDayOfMonth.toLocaleDateString('en-gb', {
@@ -55,14 +55,14 @@ function load() {
     });
 
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
-    /* Render the Month name and the Year in the header */
+    // Render the Month name and the Year in the header */
     document.getElementById('monthDisplay').innerText = `${dt.toLocaleDateString('en-gb', { month: 'long'})} ${year}`;
 
-    /* Make the Calendar only render the current Months Days.
-    Without this, the calendar would infinitely render all days of every month as a list whenever the month is changed.*/
+    // Make the Calendar only render the current Months Days.
+    //Without this, the calendar would infinitely render all days of every month as a list whenever the month is changed.*/
     calendar.innerHTML = '';
 
-    /* Render the day squares for the month */
+    // Render the day squares for the month */
     for(let i = 1; i<= paddingDays + daysInMonth; i++) {
 
         const daySquare = document.createElement('div');
@@ -106,7 +106,7 @@ function load() {
     console.log(paddingDays);
 
 }
-
+//if an event window is closed, then make the folowing variables the following --
 function closeEventWindow(){
     eventTitleInput.classList.remove('error');
     newEventWindow.style.display = 'none';
@@ -118,17 +118,18 @@ function closeEventWindow(){
     clicked = null;
     load();
 }
+//if an event is created and saved, push the data that has been inputted by the user to local storage under their corresponding value
 function saveEvent(){
     if (eventTitleInput.value){
         eventTitleInput.classList.remove('error');
-
+        //save the inputted data
         events.push({
             date:clicked,
             title: eventTitleInput.value,
             description: eventDescriptionInput.value,
             time: evenTimeInput.value,
         });
-
+        //save all data to localstorage (this would usually save to an external database)
         localStorage.setItem('events', JSON.stringify(events));
         closeEventWindow();
 
@@ -137,25 +138,26 @@ function saveEvent(){
     }
 
 }
-
+//if an event is deleted, delete all locally saved data for that specific event. Also call the closeEventWindow function to make sure all data is cleared
 function deleteEvent(){
     events = events.filter(e => e.date !== clicked);
     localStorage.setItem('events', JSON.stringify(events));
     closeEventWindow();
 }
 
-
+//define the logic for all the buttons
 function initButtons() {
+    //change the nav variable to a postive to let the load() function know that the user is going to the next month
     document.getElementById('nextButton').addEventListener('click', () => {
         nav++;
         load();
     });
-
+    //change the nav variable to a negative to let the load() function know that the user is going to the previous month
     document.getElementById('backButton').addEventListener('click', () => {
         nav--;
         load();
     });
-
+    //call the corresponding logic whether the save,cancel,delete,close button is clicked.
     document.getElementById('saveButton').addEventListener('click', saveEvent);
     document.getElementById('cancelButton').addEventListener('click', closeEventWindow);
 
